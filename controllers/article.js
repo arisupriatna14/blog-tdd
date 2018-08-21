@@ -2,7 +2,6 @@ const Article = require('../models/article')
 
 module.exports = {
   addArticle: (req, res) => {
-    console.log('ini req body dari test ====> ', req.body)
     const { title, author, content } = req.body
 
     Article 

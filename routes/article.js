@@ -6,9 +6,10 @@ const {
   updateArticle,
   deleteArticle
 } = require('../controllers/article')
+const {auth} = require('../helpers/auth')
 
 router
-  .post('/', addArticle)
+  .post('/', auth ,addArticle)
   .get('/', getAllArticle)
   .put('/:id', updateArticle)
   .delete('/:id', deleteArticle)
