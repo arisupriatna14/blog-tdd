@@ -30,15 +30,21 @@ module.exports = {
         const passwordFromDB = result.password
         bcrypt
           .compare(password, passwordFromDB)
-          .then(() => {
-            const token = jwt.sign({
-              id: result._id,
-              email: result.email
-            }, process.env.JWT_SECRET_KEY)
-            res.status(200).json({
-              message: 'Login success',
-              token: token
-            })
+          .then((isPassword) => {
+            if (isPassword) {
+              const token = jwt.sign({
+                id: result._id,
+                email: result.email
+              }, process.env.JWT_SECRET_KEY)
+              res.status(200).json({
+                message: 'Login success',
+                token: token
+              })
+            } else {
+              res.status(401).json({
+                message: "Password wrong"
+              })
+            }
           })
           .catch(err => {
             res.status(500).json({

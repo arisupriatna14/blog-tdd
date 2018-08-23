@@ -12,6 +12,10 @@ const articleSchema = mongoose.Schema({
   content: {
     type: String,
     require: true
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 

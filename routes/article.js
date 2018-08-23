@@ -4,14 +4,16 @@ const {
   addArticle,
   getAllArticle,
   updateArticle,
-  deleteArticle
+  deleteArticle,
+  getMyArticle
 } = require('../controllers/article')
-const {auth} = require('../helpers/auth')
+const { auth } = require('../helpers/auth')
 
 router
-  .post('/', auth ,addArticle)
+  .post('/', auth, addArticle)
   .get('/', getAllArticle)
-  .put('/:id', updateArticle)
-  .delete('/:id', deleteArticle)
+  .put('/:id', auth, updateArticle)
+  .delete('/:id', auth, deleteArticle)
+  .get('/my-articles', auth, getMyArticle)
 
 module.exports = router;

@@ -5,10 +5,9 @@ module.exports = {
   auth: (req, res, next) => {
     const { authorization } = req.headers
     const decoded = jwt.verify(authorization, process.env.JWT_SECRET_KEY)
-
     User
       .findById({ _id: decoded.id})
-      .then(() => {
+      .then((result) => {
         next()
       })
       .catch(err => {
