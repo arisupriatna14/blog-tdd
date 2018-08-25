@@ -15,7 +15,15 @@ module.exports = {
       .then(result => {
         res.status(201).json({
           message: "Add comment success",
-          result
+          result: {
+            _id: result._id,
+            user: {
+              _id: result._id,
+              email: decoded.email,
+            },
+            article: result.article,
+            comment: result.comment
+          },
         })
       })
       .catch(err => {
@@ -50,7 +58,7 @@ module.exports = {
       .find({ article: id })
       .populate('user', 'email')
       .then((result) => {
-        res.status(201).json({
+        res.status(200).json({
           message: 'Get comment success',
           result
         })
