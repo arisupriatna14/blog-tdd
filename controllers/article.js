@@ -75,7 +75,7 @@ module.exports = {
     const { title, author, content } = req.body
     const { id } = req.params
     Article
-      .findByIdAndUpdate({ _id: id}, {
+      .findByIdAndUpdate({ _id: id, author: author}, {
         $set: { title, author, content }
       })
       .then(result => {
@@ -106,4 +106,20 @@ module.exports = {
         })
       })
   },
+
+  getOneArticle: (req, res) => {
+    Article
+      .findOne({ _id: req.params.id })
+      .then((result) => {
+        res.status(200).json({
+          message: "Get one article success",
+          result: result
+        })
+      })
+      .catch((err) => {
+        res.status(500).json({
+          messageErr: err.message
+        })
+      })
+  }
 }

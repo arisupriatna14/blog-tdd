@@ -29,7 +29,7 @@ describe('Article', function() {
 
   after(function(done) {
     Article.collection.drop()
-    User.collection.drop()
+    // User.collection.drop()
     done()
   })
   var token = ''
