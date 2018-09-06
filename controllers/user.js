@@ -38,7 +38,8 @@ module.exports = {
               }, process.env.JWT_SECRET_KEY)
               res.status(200).json({
                 message: 'Login success',
-                token: token
+                token: token,
+		username: result.username
               })
             } else {
               res.status(401).json({
